@@ -9,12 +9,6 @@ jobs:
         runs-on: macos-latest
         steps:
             - uses: actions/checkout@v3
-            
-            - uses: conda-incubator/setup-miniconda@v2
-              with:
-                auto-update-conda: true
-                python-version: 3.11
-
             - uses: mamba-org/setup-micromamba@v1
               with:
                 environment-file: environment.yml
@@ -23,8 +17,5 @@ jobs:
                       channels:
                         - conda-forge
                 init-shell: bash
-
             - run: micromamba list 
-
-            - run: python test.py
-        
+            - run: python -X dev test.py

@@ -1,5 +1,8 @@
 name: Test
 on: push
+defaults:
+  run:
+    shell: bash -l {0}
 jobs:
     test:
         name: test
@@ -12,9 +15,16 @@ jobs:
                 auto-update-conda: true
                 python-version: 3.11
 
-            - run: conda install numpy gdal requests
+            - uses: mamba-org/setup-micromamba@v1
+              with:
+                environment-file: environment.yml
+                environment-name: env
+                condarc: |
+                      channels:
+                        - conda-forge
+                init-shell: bash
 
-            - run: conda list 
+            - run: micromamba list 
 
             - run: python test.py
         

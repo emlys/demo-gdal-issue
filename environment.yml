@@ -1,4 +1,4 @@
 dependencies:
 - numpy
-- gdal>=3.7.0
+- gdal==3.5.3
 - requests
